@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  database:
+    image: postgres:alpine
+    environment:
+      # This is just for the sake of simplicity
+      POSTGRES_USER: springjooq
+      POSTGRES_PASSWORD: springjooq
+      POSTGRES_DB: springjooq
+    ports:
+      - 5432:5432
