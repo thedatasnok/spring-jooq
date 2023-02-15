@@ -12,11 +12,12 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @NoArgsConstructor
-@Table(name = "book")
+@Table(name = "book", schema = "library")
 public class Book {
   
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "book_id")
   private Integer id;
 
   @Column(name = "title")
@@ -25,9 +26,13 @@ public class Book {
   @Column(name = "author")
   private String author;
 
-  public Book(String title, String author) {
+  @Column(name = "pages")
+  private Integer pages;
+
+  public Book(String title, String author, Integer pages) {
     this.title = title;
     this.author = author;
+    this.pages = pages;
   }
 
 }
