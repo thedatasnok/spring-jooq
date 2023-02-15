@@ -8,12 +8,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import jakarta.annotation.PostConstruct;
-import lombok.RequiredArgsConstructor;
 
 @SpringBootApplication
-@RequiredArgsConstructor
 public class MigrationsApp {
   private final DataSource dataSource;
+
+  public MigrationsApp(DataSource dataSource) {
+    this.dataSource = dataSource;
+  }
 
   public static void main(String[] args) {
     SpringApplication.run(MigrationsApp.class, args);
