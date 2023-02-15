@@ -1,0 +1,64 @@
+plugins {
+  id 'java-library'
+  alias libs.plugins.spring.boot
+  alias libs.plugins.spring.dependencies
+  id 'nu.studer.jooq' version '8.1'
+}
+
+configurations {
+  compileOnly.extendsFrom annotationProcessor
+}
+
+dependencies {
+  api 'org.springframework.boot:spring-boot-starter-jooq'
+  api project(':packages:data')
+  compileOnly 'org.projectlombok:lombok'
+  jooqGenerator project(':packages:data')
+  jooqGenerator 'org.jooq:jooq-meta-extensions-hibernate'
+}
+
+sourceSets {
+  main {
+    java {
+      srcDir "${buildDir}/generated-src/jooq/main"
+    }
+  }
+}
+
+
+import org.jooq.meta.jaxb.Logging
+
+jooq {
+  configurations {
+    main {
+      generationTool {
+        logging = Logging.WARN
+
+        generator {
+          name = 'org.jooq.codegen.DefaultGenerator'
+          
+          database {
+            name = 'org.jooq.meta.extensions.jpa.JPADatabase'
+            properties {
+              property {
+                key = 'packages'
+                value = 'cool.datasnok.samples.springjooq.data.model'
+              }
+            }
+          }
+
+          generate {
+            deprecated = false
+            records = true
+            immutablePojos = true
+            fluentSetters = true
+          }
+
+          target {
+            packageName = 'cool.datasnok.samples.springjooq.jooq'
+          }
+        }
+      }
+    }
+  }
+}

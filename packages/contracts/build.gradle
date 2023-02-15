@@ -1,0 +1,13 @@
+plugins {
+  id 'java-library'
+  alias libs.plugins.spring.boot
+  alias libs.plugins.spring.dependencies
+}
+
+configurations {
+  compileOnly.extendsFrom annotationProcessor
+}
+
+dependencies {
+  compileOnly 'org.projectlombok:lombok'
+}
