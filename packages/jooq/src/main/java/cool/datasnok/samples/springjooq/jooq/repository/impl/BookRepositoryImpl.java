@@ -1,6 +1,7 @@
 package cool.datasnok.samples.springjooq.jooq.repository.impl;
 
 import org.jooq.DSLContext;
+import org.springframework.stereotype.Repository;
 
 import cool.datasnok.samples.springjooq.contracts.BookProjection;
 import cool.datasnok.samples.springjooq.data.repository.BookRepository;
@@ -8,6 +9,7 @@ import cool.datasnok.samples.springjooq.data.repository.BookRepository;
 import static cool.datasnok.samples.jooq.Tables.BOOK;
 import lombok.RequiredArgsConstructor;
 
+@Repository
 @RequiredArgsConstructor
 public class BookRepositoryImpl implements BookRepository {
   private final DSLContext create;
