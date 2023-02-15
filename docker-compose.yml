@@ -3,10 +3,25 @@ version: '3.8'
 services:
   database:
     image: postgres:alpine
-    environment:
-      # This is just for the sake of simplicity
-      POSTGRES_USER: springjooq
-      POSTGRES_PASSWORD: springjooq
-      POSTGRES_DB: springjooq
+    env_file: .env
     ports:
       - 5432:5432
+  
+  init: 
+    image: ghcr.io/thedatasnok/springjooq-init:latest
+    env_file: .env
+    environment:
+      - POSTGRES_HOST=database
+    depends_on:
+      - database
+
+  app: 
+    image: ghcr.io/thedatasnok/springjooq:latest
+    env_file: .env
+    environment:
+      - POSTGRES_HOST=database
+    depends_on:
+      init:
+        condition: service_completed_successfully
+    ports:
+      - 8080:8080
