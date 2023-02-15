@@ -16,3 +16,17 @@ dependencies {
   runtimeOnly 'org.postgresql:postgresql'
   compileOnly 'org.projectlombok:lombok'
 }
+
+jib {
+  to {
+    image = 'ghcr.io/thedatasnok/springjooq-init'
+    tags = ['latest', version]
+  }
+  container {
+    labels = [
+      'org.opencontainers.image.source': 'https://github.com/thedatasnok/springjooq',
+      'org.opencontainers.image.description': 'Initialization container for springjooq',
+      'org.opencontainers.licenses': 'MIT'
+    ]
+  }
+}
