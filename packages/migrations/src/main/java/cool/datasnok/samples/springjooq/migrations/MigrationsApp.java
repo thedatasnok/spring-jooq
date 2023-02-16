@@ -10,14 +10,12 @@ import org.springframework.context.annotation.DependsOn;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import liquibase.integration.spring.SpringLiquibase;
+import lombok.RequiredArgsConstructor;
 
 @SpringBootApplication
+@RequiredArgsConstructor
 public class MigrationsApp {
   private final DataSource dataSource;
-
-  public MigrationsApp(DataSource dataSource) {
-    this.dataSource = dataSource;
-  }
 
   public static void main(String[] args) {
     SpringApplication.run(MigrationsApp.class, args);

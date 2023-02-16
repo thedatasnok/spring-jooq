@@ -13,6 +13,7 @@ dependencies {
   api 'org.springframework.boot:spring-boot-starter-jooq'
   api project(':packages:data')
   compileOnly 'org.projectlombok:lombok'
+  annotationProcessor 'org.projectlombok:lombok'
   jooqGenerator project(':packages:data')
   jooqGenerator 'org.jooq:jooq-meta-extensions-hibernate'
 }
