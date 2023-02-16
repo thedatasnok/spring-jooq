@@ -14,9 +14,9 @@
 
 The project is divided into a main application and a set of packages. 
 
-It seems jOOQ requires a dependency to the package which contains the JPA entities with the `JPADatabase` generator. 
+It seems jOOQ requires a dependency to a package/module which contains the JPA entities when using a `JPADatabase` as a source of truth for generating code. 
 
-This is why the `data` package is a dependency of the `jooq` package.
+This is why the packages are split the way they are and the `data` package is a dependency of the `jooq` package.
 
 ## Migrations
 
